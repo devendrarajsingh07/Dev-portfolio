@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BillingPro — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="A company workspace where invoices, payments, stock movements, and purchase orders belong to the same operational workflow.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>BillingPro / Case study</span><span>02 — 09</span></div>
+        <h1>Connecting the work behind an invoice.</h1>
+        <p class="case-intro">A company workspace where invoices, payments, stock movements, and purchase orders belong to the same operational workflow.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/billingpro-saas" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      <figure class="case-cover"><img src="../images/redesign/billingpro-cover.webp" alt="BillingPro conceptual project illustration" width="1536" height="1024"><figcaption>Conceptual project artwork. Implementation and documentation are linked below.</figcaption></figure>
+      <dl class="case-facts"><div><dt>Project</dt><dd>SaaS · Billing and operations</dd></div><div><dt>Engineering focus</dt><dd>Tenant-aware data access and business workflows</dd></div><div><dt>Technology</dt><dd>React · Node.js · Express · SQLite · Razorpay · Docker</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>An invoice is only one part of running a business. A payment changes its balance, settlement can affect stock, and a purchase order eventually replenishes inventory. Building these as unrelated screens makes it difficult to keep the underlying records consistent. A shared application also needs to keep one company's operational data separate from another's.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>BillingPro uses a React client backed by versioned Express endpoints, domain services, and SQLite repositories. Company identifiers travel through the data-access layer. Invoice, payment, inventory, and procurement services model the connected workflows, with scheduled jobs for recurring invoices and overdue reminders.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Select a company workspace</li><li>Create a GST-aware invoice</li><li>Record or collect payment</li><li>Update stock and ledger</li><li>Review reports and follow-ups</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Carry tenant context into data access</h3><p>Repository queries accept a company identifier, while API middleware handles authentication and roles. Keeping tenant context close to database operations makes the separation visible beyond the interface.</p><p class="tradeoff"><strong>The tradeoff.</strong> Every new query and workflow must preserve that context; a company selector alone is not an isolation boundary.</p></div><div class="decision"><h3>Keep business rules in domain services</h3><p>Separate services handle invoices, payments, stock, and procurement rather than putting each workflow entirely inside a route handler. The payment service also enriches invoice references in one query instead of looking them up individually.</p><p class="tradeoff"><strong>The tradeoff.</strong> More layers introduce additional contracts, but provide clearer places to manage connected business rules.</p></div><div class="decision"><h3>Combine local persistence with external integrations</h3><p>SQLite supports the application's stored records, while Razorpay, SMTP, and scheduled jobs extend payment collection and follow-up. The README documents webhook verification, duplicate-reference checks, and overpayment protection.</p><p class="tradeoff"><strong>The tradeoff.</strong> Provider callbacks and background jobs need independent failure handling; a successful local update does not prove an external action completed.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The repository brings GST-aware invoices, partial payments, PDF generation, inventory movement history, purchase orders, and company operations into one application. It is a fuller business workflow than a standalone invoice generator.</p><div class="case-scope"><h3>Current scope</h3><p>The case study describes the repository implementation, not audited financial accuracy, verified tenant isolation, or measured commercial adoption. External payments and message delivery depend on configured provider accounts.</p></div><p class="case-next">A useful next evaluation would exercise complete invoice-to-payment and purchase-to-stock scenarios, including duplicate callbacks, reversals, and cross-company access attempts.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/billingpro-saas/blob/main/README.md" target="_blank" rel="noopener noreferrer">Product workflows and architecture <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/billingpro-saas/blob/main/server/repositories/BaseRepository.js" target="_blank" rel="noopener noreferrer">Company-scoped repository operations <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/billingpro-saas/blob/main/server/services/PaymentService.js" target="_blank" rel="noopener noreferrer">Payment workflow and invoice enrichment <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="documind.html"><p class="eyebrow">Next case study</p><span class="serif">DocuMind ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

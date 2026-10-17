@@ -1,0 +1,213 @@
+[
+  {
+    "slug": "mghsis",
+    "title": "MGHSIS",
+    "repo": "SIH2026-MGHSIS.",
+    "headline": "A shared picture of crowd safety.",
+    "intro": "Connecting wearable telemetry, CCTV observations, and gate events in a venue digital twin, with people in control of the response.",
+    "category": "Safety intelligence · SIH 2026 prototype",
+    "focus": "Real-time systems, risk fusion, and operator workflows",
+    "cover": "mghsis-cover.webp",
+    "stack": ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Redis", "scikit-learn"],
+    "problem": "At a crowded venue, a wearable alert, a camera observation, and a gate count describe different parts of the same situation. When those signals remain separate, an operator has to reconstruct the context before deciding what to do. MGHSIS explores a single workflow for understanding individual distress, crowd conditions, and inconsistencies between observed and registered populations.",
+    "approach": "The project organizes that workflow around a venue digital twin. Incoming observations feed a FastAPI backend, Redis-backed live state, and PostgreSQL history. Risk outputs return to the Next.js operations interface, where an operator can inspect the evidence, explore a scenario, and authorize an intervention.",
+    "flow": ["Ingest observations", "Fuse zone signals", "Score and explain risk", "Inspect the digital twin", "Authorize and compare a response"],
+    "decisions": [
+      {"title": "Separate live state from durable history", "body": "Redis supports the live operational stream while PostgreSQL retains observations and history. The architecture gives the interface a current view without treating the live cache as the historical record.", "tradeoff": "Keeping both views consistent adds coordination work when events arrive late or services reconnect."},
+      {"title": "Make simulation part of the workflow", "body": "Deterministic simulators and scenario controls make congestion, distress, and crowd-redirection demonstrations repeatable. Operators can compare projected conditions before and after an intervention.", "tradeoff": "A repeatable simulation is useful for development, but it does not establish performance in a real crowd."},
+      {"title": "Explain risk and keep authorization human", "body": "The interface pairs risk levels with reasons, confidence, and recommended actions. The response workflow requires human authorization rather than directly controlling physical gates.", "tradeoff": "Useful decision support depends on the quality of incoming observations and the operator's interpretation."}
+    ],
+    "outcome": "The repository documents an operational prototype with a command centre, venue twin, searchable band records, alerts, scenario simulation, and intervention verification. It demonstrates how sensing, prediction, visualization, and response can fit into one application.",
+    "scope": "The telemetry and ML evaluation are synthetic. Reported model scores describe the synthetic generator, not real-world safety performance. Physical hardware integration and venue-specific validation remain separate from the demonstration; human-risk output is non-diagnostic.",
+    "next": "The next step toward a field pilot would be calibrated sensor data, temporal validation, and independent review of the operational workflow.",
+    "sources": [
+      {"label": "Project overview and implemented scope", "path": "README.md"},
+      {"label": "Architecture and service boundaries", "path": "docs/Architecture.md"},
+      {"label": "Model contract and evaluation limits", "path": "docs/ML.md"}
+    ]
+  },
+  {
+    "slug": "traceable",
+    "title": "Traceable Impact",
+    "repo": "Traceable-impact-reporting-",
+    "headline": "Every number should have a source.",
+    "intro": "An impact-reporting workflow that turns inconsistent program files into understandable metrics without losing the evidence behind them.",
+    "category": "Data systems · Nonprofit reporting",
+    "focus": "Data lineage, human review, and privacy",
+    "cover": "traceable-cover.webp",
+    "stack": ["React", "TypeScript", "FastAPI", "PostgreSQL", "pandas", "D3"],
+    "problem": "Small nonprofits often have evidence scattered across attendance sheets, donor files, surveys, and exports. Column names disagree, people appear more than once, and missing information can disappear inside a clean-looking total. The challenge is to produce a readable report while preserving the decisions and records that make each number defensible.",
+    "approach": "Traceable separates original evidence from interpretation. It preserves uploaded rows, asks a person to confirm column mappings and duplicate decisions, and stores the exact source-record IDs behind a computed metric. A React interface guides the workflow while FastAPI services manage reconciliation, calculations, privacy, and report generation.",
+    "flow": ["Import original files", "Confirm column mappings", "Review duplicate candidates", "Define and compute a metric", "Inspect and share its evidence"],
+    "decisions": [
+      {"title": "Preserve evidence instead of rewriting it", "body": "Raw uploads and rows remain immutable. Mappings, duplicate decisions, and corrections are recorded separately, with an append-only audit trail and stable source IDs.", "tradeoff": "The data model is more involved than editing a single cleaned spreadsheet, but a reported number can retain its history."},
+      {"title": "Treat automation as a suggestion", "body": "Fuzzy mappings, duplicate candidates, and AI-assisted metric formulas require explicit human review. Formula drafts are validated against the confirmed schema and allowed operations before computation.", "tradeoff": "Review takes time, so the interface must make uncertain fields and the consequences of a decision easy to inspect."},
+      {"title": "Show lineage without exposing identity", "body": "Reports use pseudonyms, protected identity mappings, and small-group suppression. Shared reports are frozen, pseudonymized snapshots. The D3 sunburst links metrics to contributing source files using record volume rather than mixing incompatible units.", "tradeoff": "Privacy controls can hide detail, and a snapshot deliberately does not update when the working report changes."}
+    ],
+    "outcome": "The repository describes an end-to-end path from CSV, spreadsheet, or JSON ingestion to a source-linked HTML/PDF report. Staff can inspect uncertain matches, review metric evidence, see unresolved gaps, and create a read-only report snapshot.",
+    "scope": "A computed metric is only as complete as the available records and confirmed decisions. Missing dates, unmapped columns, duplicate uncertainty, and exclusions remain visible. No adoption figures or measured time savings are claimed here.",
+    "next": "A useful next evaluation would follow nonprofit staff through the complete review workflow and measure whether they can explain a reported number using its attached evidence.",
+    "sources": [
+      {"label": "Workflow, trust model, and reporting", "path": "README.md"},
+      {"label": "Architecture and scaling path", "path": "ARCHITECTURE.md"}
+    ]
+  },
+  {
+    "slug": "documind",
+    "title": "DocuMind",
+    "repo": "Pdf-with-Ai-Rag",
+    "headline": "From PDFs to answers you can inspect.",
+    "intro": "A document workspace combining structured extraction, OCR, retrieval, and conversation with citations back to selected PDFs.",
+    "category": "Document intelligence · Full-stack AI",
+    "focus": "Grounded retrieval, document ownership, and durable jobs",
+    "cover": "documind-cover.webp",
+    "stack": ["Next.js", "TypeScript", "Express", "FastAPI", "PostgreSQL", "Qdrant", "Redis"],
+    "problem": "A useful PDF assistant needs more than a chat box. Scanned pages may need OCR, extraction can miss content, long documents need searchable chunks, and users need to check where an answer came from. Processing also has to survive slow inference and retries without mixing one user's documents with another's.",
+    "approach": "DocuMind separates the browser workspace, account/document API, and Python inference service. Next.js provides document preview and chat; Express handles authentication, ownership, conversations, and jobs; FastAPI performs extraction and retrieval. PostgreSQL stores durable application records, while Qdrant indexes document chunks and Redis supports provider coordination and encrypted caches.",
+    "flow": ["Upload and validate a PDF", "Extract text or run OCR", "Chunk, embed, and index", "Retrieve and rerank evidence", "Generate an answer with citations"],
+    "decisions": [
+      {"title": "Preserve the original reading", "body": "Native PDF text is preserved alongside page-level OCR structure. Optional image enhancement is checked against the original reading and can fall back when content is lost or numeric fields change.", "tradeoff": "Those preservation checks are heuristics. OCR confidence and a cleaner image do not prove transcription accuracy."},
+      {"title": "Retrieve within an explicit document boundary", "body": "Retrieval is filtered by owner and selected documents, followed by cross-encoder reranking and bounded context. Answers include normalized citations so the reader can return to supporting pages.", "tradeoff": "Retrieval and citations make answers inspectable, but users still need to verify important statements against the original PDF."},
+      {"title": "Persist work beyond a single HTTP request", "body": "PostgreSQL-backed jobs use idempotency keys, leases, and progress state. Matching retries reuse the existing job; Redis coordinates budgets and caching rather than serving as the authoritative job store.", "tradeoff": "Job recovery adds complexity, and files, vectors, provider calls, and database changes do not share one distributed transaction."}
+    ],
+    "outcome": "The documented workspace supports authenticated document upload, PDF preview, page-level analysis, reindexing, selected-document chat, and job-status feedback. The implementation connects the complete document-to-answer workflow rather than treating extraction and chat as separate demos.",
+    "scope": "Extraction summaries are not guaranteed comprehensive reports. OCR confidence is not measured transcription accuracy, optional enhancement needs trusted document-trained weights, and local service health does not establish public-production readiness. No answer-accuracy or latency benchmark is claimed here.",
+    "next": "The next evaluation would use a labeled document set to measure extraction errors, retrieval relevance, and whether citations actually support generated answers.",
+    "sources": [
+      {"label": "System architecture, jobs, and retrieval", "path": "README.md"},
+      {"label": "OCR architecture and evaluation", "path": "OCR_ARCHITECTURE.md"},
+      {"label": "Authentication and service boundaries", "path": "SECURITY_OVERVIEW.md"}
+    ]
+  },
+  {
+    "slug": "billingpro", "title": "BillingPro", "repo": "billingpro-saas",
+    "headline": "Connecting the work behind an invoice.",
+    "intro": "A company workspace where invoices, payments, stock movements, and purchase orders belong to the same operational workflow.",
+    "category": "SaaS · Billing and operations", "focus": "Tenant-aware data access and business workflows",
+    "cover": "billingpro-cover.webp", "stack": ["React", "Node.js", "Express", "SQLite", "Razorpay", "Docker"],
+    "problem": "An invoice is only one part of running a business. A payment changes its balance, settlement can affect stock, and a purchase order eventually replenishes inventory. Building these as unrelated screens makes it difficult to keep the underlying records consistent. A shared application also needs to keep one company's operational data separate from another's.",
+    "approach": "BillingPro uses a React client backed by versioned Express endpoints, domain services, and SQLite repositories. Company identifiers travel through the data-access layer. Invoice, payment, inventory, and procurement services model the connected workflows, with scheduled jobs for recurring invoices and overdue reminders.",
+    "flow": ["Select a company workspace", "Create a GST-aware invoice", "Record or collect payment", "Update stock and ledger", "Review reports and follow-ups"],
+    "decisions": [
+      {"title": "Carry tenant context into data access", "body": "Repository queries accept a company identifier, while API middleware handles authentication and roles. Keeping tenant context close to database operations makes the separation visible beyond the interface.", "tradeoff": "Every new query and workflow must preserve that context; a company selector alone is not an isolation boundary."},
+      {"title": "Keep business rules in domain services", "body": "Separate services handle invoices, payments, stock, and procurement rather than putting each workflow entirely inside a route handler. The payment service also enriches invoice references in one query instead of looking them up individually.", "tradeoff": "More layers introduce additional contracts, but provide clearer places to manage connected business rules."},
+      {"title": "Combine local persistence with external integrations", "body": "SQLite supports the application's stored records, while Razorpay, SMTP, and scheduled jobs extend payment collection and follow-up. The README documents webhook verification, duplicate-reference checks, and overpayment protection.", "tradeoff": "Provider callbacks and background jobs need independent failure handling; a successful local update does not prove an external action completed."}
+    ],
+    "outcome": "The repository brings GST-aware invoices, partial payments, PDF generation, inventory movement history, purchase orders, and company operations into one application. It is a fuller business workflow than a standalone invoice generator.",
+    "scope": "The case study describes the repository implementation, not audited financial accuracy, verified tenant isolation, or measured commercial adoption. External payments and message delivery depend on configured provider accounts.",
+    "next": "A useful next evaluation would exercise complete invoice-to-payment and purchase-to-stock scenarios, including duplicate callbacks, reversals, and cross-company access attempts.",
+    "sources": [
+      {"label": "Product workflows and architecture", "path": "README.md"},
+      {"label": "Company-scoped repository operations", "path": "server/repositories/BaseRepository.js"},
+      {"label": "Payment workflow and invoice enrichment", "path": "server/services/PaymentService.js"}
+    ]
+  },
+  {
+    "slug": "human-digital-twin", "title": "Human Digital Twin", "repo": "Human-Digital-Twin0.1",
+    "headline": "A wellness twin that learns from observation.",
+    "intro": "Connecting daily student observations, an interactive 3D twin, forecasts, and prediction feedback in one explainable loop.",
+    "category": "Digital twins · Student wellness", "focus": "Personalized models, consistent simulation, and feedback",
+    "cover": "human-twin-cover.webp", "stack": ["Next.js", "TypeScript", "Three.js", "FastAPI", "scikit-learn", "SQLAlchemy"],
+    "problem": "A wellness dashboard can show a score without explaining how it relates to a student's changing daily routine. A useful twin needs to connect observations to its current state, make forecasts inspectable, and compare those forecasts with what happens later. It also has to remain useful before a new user has enough history to train a personal model.",
+    "approach": "The platform turns daily logs into nine wellness dimensions, displays them through a Three.js anatomical model, and exposes trends, forecasts, and what-if interventions. A FastAPI backend handles scoring and persisted per-user model bundles, while authenticated WebSocket updates keep the interface synchronized.",
+    "flow": ["Record daily observations", "Update category scores", "Synchronize the 3D twin", "Forecast or simulate", "Compare with later observations"],
+    "decisions": [
+      {"title": "Start with explainable scoring", "body": "Deterministic, bounded heuristics provide an initial state with sparse observations. Per-user Random Forest models become available when enough chronological data exists, rather than requiring a trained model at registration.", "tradeoff": "A heuristic score and a learned forecast have different foundations, so the interface needs to communicate which path produced an output."},
+      {"title": "Compare interventions on the same prediction path", "body": "What-if baselines and altered observations pass through the same model path. This avoids presenting a difference that comes merely from comparing a model output with an unrelated heuristic baseline.", "tradeoff": "A consistent comparison is easier to interpret, but does not establish that changing a behavior causes the predicted outcome."},
+      {"title": "Close the prediction-feedback loop", "body": "Forecasts are graded against later observations to track twin fidelity. Live score events update the interface, and each input has a primary category owner to limit double-counting in the overall score.", "tradeoff": "Feedback quality depends on regular, reliable self-reports and enough overlapping observations."}
+    ],
+    "outcome": "The documented application connects daily logging, a 3D twin, predictions, simulation, analytics, recommendations, and profile management. Prediction-versus-actual tracking gives the twin a way to expose its own fit over time.",
+    "scope": "This is an educational wellness and productivity project, not a medical diagnostic system. Self-reported observations, correlations, and simulated interventions do not demonstrate clinical validity or causal effects.",
+    "next": "The next evaluation would track forecast errors over time for consenting users and inspect how missing or inconsistent logs affect the twin's usefulness.",
+    "sources": [{"label": "Feedback loop, modeling, and application architecture", "path": "README.md"}]
+  },
+  {
+    "slug": "crowdsense", "title": "CrowdSense AI", "repo": "CrowdSense-AI",
+    "headline": "Turning camera frames into crowd context.",
+    "intro": "A computer-vision pipeline connecting person detection with occupancy, risk indicators, historical analytics, and reports.",
+    "category": "Computer vision · Monitoring", "focus": "Detection-to-dashboard integration and fresh operational state",
+    "cover": "crowdsense-cover.webp", "stack": ["Python", "YOLOv8", "OpenCV", "FastAPI", "SQLite", "Chart.js"],
+    "problem": "A person detector produces observations, but monitoring a space needs more context: how many people are present, how occupancy changes, whether the camera is still connected, and what happened earlier. CrowdSense connects the inference output to an operational dashboard rather than leaving it in a detector window.",
+    "approach": "YOLOv8 and OpenCV handle person detection, FastAPI exposes monitoring and analysis endpoints, and a JavaScript dashboard presents counts and trends with Chart.js. SQLite retains historical records, while video upload analysis and PDF reporting provide review paths beyond the live camera feed.",
+    "flow": ["Read camera frames or video", "Detect people", "Calculate occupancy and risk", "Publish current state and history", "Inspect analytics and reports"],
+    "decisions": [
+      {"title": "Connect inference to a usable monitoring surface", "body": "The detector, API, and dashboard are separate parts of the workflow. Detection output becomes counts, occupancy indicators, alerts, and historical records that can be inspected outside the camera window.", "tradeoff": "Separating those components makes deployment more flexible, but requires consistent data contracts and clear failure states."},
+      {"title": "Treat freshness as part of the data", "body": "The state layer writes a timestamped detector heartbeat and atomically replaces the state file. Missing, invalid, or stale state is returned as camera offline rather than continuing to present an old observation as current.", "tradeoff": "A freshness threshold can classify a slow or interrupted detector as offline, so it needs to match the actual update rate."},
+      {"title": "Keep live monitoring and uploaded-video review", "body": "A camera detector supports live observations, while the upload analyzer provides a second path for examining recorded footage. History and report generation make previous observations available for review.", "tradeoff": "Video inference has material memory and compute requirements; hosting the dashboard alone does not provide the inference capacity."}
+    ],
+    "outcome": "The repository includes live person detection, crowd counting, risk classification, occupancy monitoring, a history-backed dashboard, video analysis, and PDF reporting. It demonstrates the path from computer-vision output to an inspectable monitoring application.",
+    "scope": "Detection quality depends on camera angle, lighting, occlusion, and the model. Risk labels are application indicators, not validated crowd-safety predictions. Live inference and deployment availability were not independently verified for this case study.",
+    "next": "A useful next evaluation would compare counts with labeled footage across different crowd densities and test how the dashboard handles delayed or interrupted detector updates.",
+    "sources": [
+      {"label": "Capabilities and resource requirements", "path": "README.md"},
+      {"label": "Heartbeat, freshness, and atomic state updates", "path": "backend/state.py"}
+    ]
+  },
+  {
+    "slug": "battery-fast-charging", "title": "AI Battery Fast Charging", "repo": "AI_Battery_Fast_Charging", "ref": "master",
+    "headline": "Exploring the tradeoffs in faster charging.",
+    "intro": "A reinforcement-learning experiment balancing charge progress with modeled voltage, temperature, and battery aging.",
+    "category": "Reinforcement learning · Simulation", "focus": "Continuous control, reward design, and model boundaries",
+    "stack": ["Python", "Soft Actor-Critic", "Gymnasium", "PyTorch", "Streamlit", "Plotly"],
+    "problem": "Increasing charging current can speed up charge progress while also increasing heat and stress. A controller therefore has to balance competing objectives rather than maximize current alone. This project explores that balance in a simulated lithium-ion cell, where the state and reward can be inspected step by step.",
+    "approach": "A Gymnasium environment combines a simplified Single Particle Model with thermal and state-of-health calculations. A Soft Actor-Critic agent selects a continuous charging current from observations of charge, voltage, temperature, and health. Training scripts, saved model weights, plots, and a Streamlit dashboard support experimentation.",
+    "flow": ["Observe simulated cell state", "Choose a charging current", "Advance the cell model", "Apply reward and cutoffs", "Inspect the charging trajectory"],
+    "decisions": [
+      {"title": "Use continuous control", "body": "The environment exposes charging current as a bounded continuous action rather than a small set of fixed switches. Soft Actor-Critic provides the policy implementation through Stable-Baselines3.", "tradeoff": "A policy can exploit inaccuracies in its simulator, so smooth control alone does not establish a useful physical charging strategy."},
+      {"title": "Encode competing objectives in the reward", "body": "The reward encourages charge progress while penalizing voltage overshoot, elevated temperature, health degradation, and high current when already warm. Episode termination conditions provide additional modeled boundaries.", "tradeoff": "The chosen weights and thresholds determine what the policy learns; they require evaluation rather than being evidence of a physical safety guarantee."},
+      {"title": "Use a simplified model for iteration", "body": "The training environment uses a simplified cell model and thermal update, with a separate direct PyBaMM environment available as a reference. This keeps the training workflow focused on a tractable simulation.", "tradeoff": "Simplification omits electrochemical behavior that matters outside the simulated setting."}
+    ],
+    "outcome": "The repository contains a trainable SAC agent, a continuous charging environment, pretrained weights, and a Streamlit inspection interface. The result is a control-policy experiment that exposes charge, thermal, voltage, and aging objectives together.",
+    "scope": "This is simulation research, not a charger controller validated on hardware. No measured reduction in real charging time, temperature, or cell degradation is claimed. Full electrochemical coupling, aging datasets, and hardware-in-the-loop work are listed as future directions.",
+    "next": "The next experiment would compare the learned policy with fixed-current and conventional charging baselines across matched initial states before considering any physical-cell evaluation.",
+    "sources": [
+      {"label": "Model, training, and reward design", "path": "README.md"},
+      {"label": "Continuous environment and termination conditions", "path": "env/continuous_pybamm_env.py"}
+    ]
+  },
+  {
+    "slug": "trading-log-web", "title": "Trading Log — Web App", "repo": "Trading-Log-Management-System-using-JS",
+    "headline": "Taking a trading journal into the browser.",
+    "intro": "A full-stack adaptation of a desktop trade-recording workflow, combining editable records, search, summary analytics, and export.",
+    "category": "Full-stack web · Desktop-to-web migration", "focus": "REST APIs, relational persistence, and responsive workflows",
+    "stack": ["React", "Node.js", "Express", "MySQL", "Chart.js", "JWT"],
+    "problem": "The desktop journal established a way to record and review trades, but its interface and installation were tied to a local Java application. The web version translates those tasks into browser routes and API operations while retaining the journal's core record fields, summary views, and exports.",
+    "approach": "React and Vite provide the browser interface, with an Express API and MySQL persistence behind it. The application includes JWT-based login, trade CRUD, search and filters, profit/loss summaries, Chart.js visualization, CSV downloads, and an Alpha Vantage price endpoint.",
+    "flow": ["Sign in", "Record or edit a trade", "Search the journal", "Review profit/loss summaries", "Export records for review"],
+    "decisions": [
+      {"title": "Translate desktop actions into API operations", "body": "Adding, viewing, editing, and deleting records become explicit REST endpoints. The browser can present responsive routes while the server owns database queries and response handling.", "tradeoff": "A browser deployment introduces authentication, network failures, and server configuration that the local interface did not need to present in the same way."},
+      {"title": "Keep summaries close to stored records", "body": "The trade controller calculates aggregate counts and profit/loss summaries in SQL. Search uses bound parameters for symbols, strategy text, remarks, and side filters.", "tradeoff": "Summary correctness still depends on consistent trade data and profit/loss conventions, especially around open positions and buy/sell direction."},
+      {"title": "Keep records portable", "body": "A server-side CSV endpoint exports stored journal fields, while a separate price endpoint connects to Alpha Vantage. The journal therefore supports both in-app review and inspection outside the dashboard.", "tradeoff": "External quotes depend on provider availability and quotas; exporting a record does not validate its financial interpretation."}
+    ],
+    "outcome": "The repository documents a browser-based journal covering login, trade maintenance, filters, analytics, and export. It makes the evolution from a desktop workflow to a client/API/database application visible.",
+    "scope": "This is a trade-recording and analysis project, not order execution or investment advice. JWT login alone does not establish per-user record isolation; the reviewed trade queries operate on the shared trades table. No financial-performance claim is made.",
+    "next": "The next engineering step would be explicit record ownership and authorization tests, followed by tests for open positions, side-aware profit/loss calculations, and unavailable quote data.",
+    "sources": [
+      {"label": "Migration overview and API endpoints", "path": "README.md"},
+      {"label": "Trade queries, summary calculations, and CSV export", "path": "server/controllers/tradeController.js"}
+    ]
+  },
+  {
+    "slug": "trading-log-desktop", "title": "Trading Log — Desktop App", "repo": "Trading-Log-Management-System",
+    "headline": "A desktop home for a trading journal.",
+    "intro": "A Java Swing application bringing trade entry, record management, summary reporting, and CSV export into a local desktop workflow.",
+    "category": "Java desktop · Trading journal", "focus": "Swing interfaces, JDBC persistence, and reusable trade logic",
+    "stack": ["Java", "Swing", "JDBC", "SQL", "CSV", "Alpha Vantage"],
+    "problem": "A journal needs to preserve more than an entry and exit price. Symbols, position side, quantity, date, strategy, and remarks help make a record understandable later. The desktop project brings those fields together with editing, summary statistics, and exports in a single application.",
+    "approach": "Swing frames handle login, the dashboard, entry forms, and record views. A Trade model represents journal entries, while TradeDAO uses JDBC prepared statements to read and write database records. Separate services handle CSV export and external market-price requests.",
+    "flow": ["Open the login window", "Enter a trade", "Persist its journal fields", "Review and edit records", "Refresh summaries or export CSV"],
+    "decisions": [
+      {"title": "Separate windows from database access", "body": "Dashboard and form classes handle the desktop interactions, while TradeDAO contains SQL operations. The Trade model carries journal fields between the interface and persistence layer.", "tradeoff": "The separation clarifies responsibilities, but database and network work still need careful scheduling to keep Swing's interface responsive."},
+      {"title": "Reuse records across summaries and exports", "body": "The dashboard reads trade records for totals, winning/losing counts, and buy/sell summaries, and passes records to a CSV export utility. This keeps the stored journal central to several views.", "tradeoff": "Refreshing summaries from a record list is straightforward for a small journal, but larger datasets may need database-side aggregation and pagination."},
+      {"title": "Isolate external quote requests", "body": "MarketPriceService contains symbol encoding, HTTP timeouts, response parsing, and provider-error handling. The quote integration is separate from the trade model and entry windows.", "tradeoff": "The committed service contains an API-key placeholder and requires configuration; external quote availability cannot be assumed."}
+    ],
+    "outcome": "The source contains login, trade-entry and editing windows, database-backed records, dashboard summaries, CSV export, and a market-price adapter. It also provides the desktop foundation for the later web version of the journal.",
+    "scope": "The repository README is empty, so this case study is based on the Java implementation. The desktop application was not launched during this review. Login is present, but tenant isolation, production security, and live quote access are not established by this source review.",
+    "next": "A useful next iteration would add reproducible setup instructions, move configuration outside source files, and test database failures and UI responsiveness during quote requests.",
+    "sources": [
+      {"label": "Dashboard actions, summaries, and export", "path": "src/com/tradinglog/app/ui/DashboardFrame.java"},
+      {"label": "Database-backed trade operations", "path": "src/com/tradinglog/app/service/TradeDAO.java"},
+      {"label": "Market-price integration", "path": "src/com/tradinglog/app/service/MarketPriceService.java"}
+    ]
+  }
+]

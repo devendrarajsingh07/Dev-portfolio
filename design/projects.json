@@ -1,0 +1,128 @@
+[
+  {
+    "repo": "billingpro-saas",
+    "title": "BillingPro",
+    "category": "SaaS & ERP",
+    "color": "purple",
+    "description": "A multi-tenant billing and operations platform for GST-aware invoices, payments, inventory, purchase orders, and customer management. Includes role-based access, recurring invoices, PDF generation, and Razorpay integration.",
+    "tags": [
+      "React",
+      "Node.js",
+      "Express",
+      "SQLite",
+      "Docker"
+    ]
+  },
+  {
+    "repo": "Pdf-with-Ai-Rag",
+    "title": "DocuMind",
+    "category": "AI & Document Intelligence",
+    "color": "pink",
+    "description": "An authenticated PDF workspace with structured OCR, per-page analysis, and document chat with source citations. Combines document extraction, vector search, and reranking to ground answers in selected PDFs.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Qdrant",
+      "RAG"
+    ]
+  },
+  {
+    "repo": "Traceable-impact-reporting-",
+    "title": "Traceable Impact",
+    "category": "Data & Impact Reporting",
+    "color": "green",
+    "description": "A reporting platform for nonprofits that turns inconsistent program files into source-linked metrics. Features human-reviewed column mappings and duplicate matches, privacy safeguards, audit trails, and PDF or HTML reports.",
+    "tags": [
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "pandas",
+      "D3"
+    ]
+  },
+  {
+    "repo": "Human-Digital-Twin0.1",
+    "title": "Human Digital Twin",
+    "category": "AI & Digital Twins",
+    "color": "cyan",
+    "description": "A student wellness platform with an interactive 3D twin, daily observations, nine wellness dimensions, and personalized forecasts. Supports Random Forest models, what-if lifestyle simulations, and prediction-versus-actual tracking.",
+    "tags": [
+      "Next.js",
+      "Three.js",
+      "FastAPI",
+      "scikit-learn",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "repo": "CrowdSense-AI",
+    "title": "CrowdSense AI",
+    "category": "Computer Vision & Analytics",
+    "color": "pink",
+    "description": "A crowd monitoring platform using YOLOv8 for person detection and crowd counting. Includes occupancy monitoring, risk classification, historical analytics, video upload analysis, and PDF reports.",
+    "tags": [
+      "YOLOv8",
+      "OpenCV",
+      "FastAPI",
+      "SQLite",
+      "Chart.js"
+    ]
+  },
+  {
+    "repo": "SIH2026-MGHSIS.",
+    "title": "MGHSIS",
+    "category": "SIH 2026 & Safety Intelligence",
+    "color": "purple",
+    "description": "A mass-gathering safety prototype combining wearable telemetry, CCTV crowd analytics, and gate events in a venue digital twin. Provides zone-level risk prediction, scenario simulation, and human-authorized intervention workflows.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Redis",
+      "PostgreSQL",
+      "scikit-learn"
+    ]
+  },
+  {
+    "repo": "AI_Battery_Fast_Charging",
+    "title": "AI Battery Fast Charging",
+    "category": "AI & Reinforcement Learning",
+    "color": "green",
+    "description": "A Soft Actor-Critic reinforcement learning agent for adaptive lithium-ion battery charging. Uses a simplified Single Particle Model with temperature, voltage, and aging penalties, plus a Streamlit simulation dashboard.",
+    "tags": [
+      "Python",
+      "SAC / RL",
+      "Gymnasium",
+      "PyTorch",
+      "Streamlit"
+    ],
+    "demo": "https://devrajsingh07.streamlit.app"
+  },
+  {
+    "repo": "Trading-Log-Management-System-using-JS",
+    "title": "Trading Log — Web App",
+    "category": "Full Stack Web Development",
+    "color": "cyan",
+    "description": "A browser-based trading journal with JWT authentication, trade management, profit/loss analytics, search, filters, and CSV export. Integrates Alpha Vantage market prices and converts the original desktop workflow into a responsive web app.",
+    "tags": [
+      "React",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Chart.js"
+    ]
+  },
+  {
+    "repo": "Trading-Log-Management-System",
+    "title": "Trading Log — Desktop App",
+    "category": "Java Desktop Development",
+    "color": "yellow",
+    "description": "A Java Swing desktop application for recording and analyzing trades. Provides login authentication, trade management, market price integration, profit/loss analysis, reporting, and CSV export.",
+    "tags": [
+      "Java",
+      "Swing"
+    ]
+  }
+]

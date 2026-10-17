@@ -1,0 +1,13 @@
+# Local dependencies, caches, and environment files
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+.codex/
+.agents/
+
+# Unrelated personal document
+The_Eighth_Choice_Devendra_Raj_Singh.docx

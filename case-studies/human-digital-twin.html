@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Human Digital Twin — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="Connecting daily student observations, an interactive 3D twin, forecasts, and prediction feedback in one explainable loop.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>Human Digital Twin / Case study</span><span>05 — 09</span></div>
+        <h1>A wellness twin that learns from observation.</h1>
+        <p class="case-intro">Connecting daily student observations, an interactive 3D twin, forecasts, and prediction feedback in one explainable loop.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/Human-Digital-Twin0.1" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      <figure class="case-cover"><img src="../images/redesign/human-twin-cover.webp" alt="Human Digital Twin conceptual project illustration" width="1536" height="1024"><figcaption>Conceptual project artwork. Implementation and documentation are linked below.</figcaption></figure>
+      <dl class="case-facts"><div><dt>Project</dt><dd>Digital twins · Student wellness</dd></div><div><dt>Engineering focus</dt><dd>Personalized models, consistent simulation, and feedback</dd></div><div><dt>Technology</dt><dd>Next.js · TypeScript · Three.js · FastAPI · scikit-learn · SQLAlchemy</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>A wellness dashboard can show a score without explaining how it relates to a student's changing daily routine. A useful twin needs to connect observations to its current state, make forecasts inspectable, and compare those forecasts with what happens later. It also has to remain useful before a new user has enough history to train a personal model.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>The platform turns daily logs into nine wellness dimensions, displays them through a Three.js anatomical model, and exposes trends, forecasts, and what-if interventions. A FastAPI backend handles scoring and persisted per-user model bundles, while authenticated WebSocket updates keep the interface synchronized.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Record daily observations</li><li>Update category scores</li><li>Synchronize the 3D twin</li><li>Forecast or simulate</li><li>Compare with later observations</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Start with explainable scoring</h3><p>Deterministic, bounded heuristics provide an initial state with sparse observations. Per-user Random Forest models become available when enough chronological data exists, rather than requiring a trained model at registration.</p><p class="tradeoff"><strong>The tradeoff.</strong> A heuristic score and a learned forecast have different foundations, so the interface needs to communicate which path produced an output.</p></div><div class="decision"><h3>Compare interventions on the same prediction path</h3><p>What-if baselines and altered observations pass through the same model path. This avoids presenting a difference that comes merely from comparing a model output with an unrelated heuristic baseline.</p><p class="tradeoff"><strong>The tradeoff.</strong> A consistent comparison is easier to interpret, but does not establish that changing a behavior causes the predicted outcome.</p></div><div class="decision"><h3>Close the prediction-feedback loop</h3><p>Forecasts are graded against later observations to track twin fidelity. Live score events update the interface, and each input has a primary category owner to limit double-counting in the overall score.</p><p class="tradeoff"><strong>The tradeoff.</strong> Feedback quality depends on regular, reliable self-reports and enough overlapping observations.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The documented application connects daily logging, a 3D twin, predictions, simulation, analytics, recommendations, and profile management. Prediction-versus-actual tracking gives the twin a way to expose its own fit over time.</p><div class="case-scope"><h3>Current scope</h3><p>This is an educational wellness and productivity project, not a medical diagnostic system. Self-reported observations, correlations, and simulated interventions do not demonstrate clinical validity or causal effects.</p></div><p class="case-next">The next evaluation would track forecast errors over time for consenting users and inspect how missing or inconsistent logs affect the twin's usefulness.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/Human-Digital-Twin0.1/blob/main/README.md" target="_blank" rel="noopener noreferrer">Feedback loop, modeling, and application architecture <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="crowdsense.html"><p class="eyebrow">Next case study</p><span class="serif">CrowdSense AI ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

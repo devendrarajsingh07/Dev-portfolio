@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocuMind — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="A document workspace combining structured extraction, OCR, retrieval, and conversation with citations back to selected PDFs.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>DocuMind / Case study</span><span>03 — 09</span></div>
+        <h1>From PDFs to answers you can inspect.</h1>
+        <p class="case-intro">A document workspace combining structured extraction, OCR, retrieval, and conversation with citations back to selected PDFs.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/Pdf-with-Ai-Rag" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      <figure class="case-cover"><img src="../images/redesign/documind-cover.webp" alt="DocuMind conceptual project illustration" width="1536" height="1024"><figcaption>Conceptual project artwork. Implementation and documentation are linked below.</figcaption></figure>
+      <dl class="case-facts"><div><dt>Project</dt><dd>Document intelligence · Full-stack AI</dd></div><div><dt>Engineering focus</dt><dd>Grounded retrieval, document ownership, and durable jobs</dd></div><div><dt>Technology</dt><dd>Next.js · TypeScript · Express · FastAPI · PostgreSQL · Qdrant · Redis</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>A useful PDF assistant needs more than a chat box. Scanned pages may need OCR, extraction can miss content, long documents need searchable chunks, and users need to check where an answer came from. Processing also has to survive slow inference and retries without mixing one user's documents with another's.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>DocuMind separates the browser workspace, account/document API, and Python inference service. Next.js provides document preview and chat; Express handles authentication, ownership, conversations, and jobs; FastAPI performs extraction and retrieval. PostgreSQL stores durable application records, while Qdrant indexes document chunks and Redis supports provider coordination and encrypted caches.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Upload and validate a PDF</li><li>Extract text or run OCR</li><li>Chunk, embed, and index</li><li>Retrieve and rerank evidence</li><li>Generate an answer with citations</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Preserve the original reading</h3><p>Native PDF text is preserved alongside page-level OCR structure. Optional image enhancement is checked against the original reading and can fall back when content is lost or numeric fields change.</p><p class="tradeoff"><strong>The tradeoff.</strong> Those preservation checks are heuristics. OCR confidence and a cleaner image do not prove transcription accuracy.</p></div><div class="decision"><h3>Retrieve within an explicit document boundary</h3><p>Retrieval is filtered by owner and selected documents, followed by cross-encoder reranking and bounded context. Answers include normalized citations so the reader can return to supporting pages.</p><p class="tradeoff"><strong>The tradeoff.</strong> Retrieval and citations make answers inspectable, but users still need to verify important statements against the original PDF.</p></div><div class="decision"><h3>Persist work beyond a single HTTP request</h3><p>PostgreSQL-backed jobs use idempotency keys, leases, and progress state. Matching retries reuse the existing job; Redis coordinates budgets and caching rather than serving as the authoritative job store.</p><p class="tradeoff"><strong>The tradeoff.</strong> Job recovery adds complexity, and files, vectors, provider calls, and database changes do not share one distributed transaction.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The documented workspace supports authenticated document upload, PDF preview, page-level analysis, reindexing, selected-document chat, and job-status feedback. The implementation connects the complete document-to-answer workflow rather than treating extraction and chat as separate demos.</p><div class="case-scope"><h3>Current scope</h3><p>Extraction summaries are not guaranteed comprehensive reports. OCR confidence is not measured transcription accuracy, optional enhancement needs trusted document-trained weights, and local service health does not establish public-production readiness. No answer-accuracy or latency benchmark is claimed here.</p></div><p class="case-next">The next evaluation would use a labeled document set to measure extraction errors, retrieval relevance, and whether citations actually support generated answers.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/Pdf-with-Ai-Rag/blob/main/README.md" target="_blank" rel="noopener noreferrer">System architecture, jobs, and retrieval <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/Pdf-with-Ai-Rag/blob/main/OCR_ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">OCR architecture and evaluation <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/Pdf-with-Ai-Rag/blob/main/SECURITY_OVERVIEW.md" target="_blank" rel="noopener noreferrer">Authentication and service boundaries <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="traceable.html"><p class="eyebrow">Next case study</p><span class="serif">Traceable Impact ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

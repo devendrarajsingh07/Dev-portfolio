@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traceable Impact — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="An impact-reporting workflow that turns inconsistent program files into understandable metrics without losing the evidence behind them.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>Traceable Impact / Case study</span><span>04 — 09</span></div>
+        <h1>Every number should have a source.</h1>
+        <p class="case-intro">An impact-reporting workflow that turns inconsistent program files into understandable metrics without losing the evidence behind them.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/Traceable-impact-reporting-" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      <figure class="case-cover"><img src="../images/redesign/traceable-cover.webp" alt="Traceable Impact conceptual project illustration" width="1536" height="1024"><figcaption>Conceptual project artwork. Implementation and documentation are linked below.</figcaption></figure>
+      <dl class="case-facts"><div><dt>Project</dt><dd>Data systems · Nonprofit reporting</dd></div><div><dt>Engineering focus</dt><dd>Data lineage, human review, and privacy</dd></div><div><dt>Technology</dt><dd>React · TypeScript · FastAPI · PostgreSQL · pandas · D3</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>Small nonprofits often have evidence scattered across attendance sheets, donor files, surveys, and exports. Column names disagree, people appear more than once, and missing information can disappear inside a clean-looking total. The challenge is to produce a readable report while preserving the decisions and records that make each number defensible.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>Traceable separates original evidence from interpretation. It preserves uploaded rows, asks a person to confirm column mappings and duplicate decisions, and stores the exact source-record IDs behind a computed metric. A React interface guides the workflow while FastAPI services manage reconciliation, calculations, privacy, and report generation.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Import original files</li><li>Confirm column mappings</li><li>Review duplicate candidates</li><li>Define and compute a metric</li><li>Inspect and share its evidence</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Preserve evidence instead of rewriting it</h3><p>Raw uploads and rows remain immutable. Mappings, duplicate decisions, and corrections are recorded separately, with an append-only audit trail and stable source IDs.</p><p class="tradeoff"><strong>The tradeoff.</strong> The data model is more involved than editing a single cleaned spreadsheet, but a reported number can retain its history.</p></div><div class="decision"><h3>Treat automation as a suggestion</h3><p>Fuzzy mappings, duplicate candidates, and AI-assisted metric formulas require explicit human review. Formula drafts are validated against the confirmed schema and allowed operations before computation.</p><p class="tradeoff"><strong>The tradeoff.</strong> Review takes time, so the interface must make uncertain fields and the consequences of a decision easy to inspect.</p></div><div class="decision"><h3>Show lineage without exposing identity</h3><p>Reports use pseudonyms, protected identity mappings, and small-group suppression. Shared reports are frozen, pseudonymized snapshots. The D3 sunburst links metrics to contributing source files using record volume rather than mixing incompatible units.</p><p class="tradeoff"><strong>The tradeoff.</strong> Privacy controls can hide detail, and a snapshot deliberately does not update when the working report changes.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The repository describes an end-to-end path from CSV, spreadsheet, or JSON ingestion to a source-linked HTML/PDF report. Staff can inspect uncertain matches, review metric evidence, see unresolved gaps, and create a read-only report snapshot.</p><div class="case-scope"><h3>Current scope</h3><p>A computed metric is only as complete as the available records and confirmed decisions. Missing dates, unmapped columns, duplicate uncertainty, and exclusions remain visible. No adoption figures or measured time savings are claimed here.</p></div><p class="case-next">A useful next evaluation would follow nonprofit staff through the complete review workflow and measure whether they can explain a reported number using its attached evidence.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/Traceable-impact-reporting-/blob/main/README.md" target="_blank" rel="noopener noreferrer">Workflow, trust model, and reporting <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/Traceable-impact-reporting-/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">Architecture and scaling path <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="human-digital-twin.html"><p class="eyebrow">Next case study</p><span class="serif">Human Digital Twin ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CrowdSense AI — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="A computer-vision pipeline connecting person detection with occupancy, risk indicators, historical analytics, and reports.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>CrowdSense AI / Case study</span><span>06 — 09</span></div>
+        <h1>Turning camera frames into crowd context.</h1>
+        <p class="case-intro">A computer-vision pipeline connecting person detection with occupancy, risk indicators, historical analytics, and reports.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/CrowdSense-AI" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      <figure class="case-cover"><img src="../images/redesign/crowdsense-cover.webp" alt="CrowdSense AI conceptual project illustration" width="1536" height="1024"><figcaption>Conceptual project artwork. Implementation and documentation are linked below.</figcaption></figure>
+      <dl class="case-facts"><div><dt>Project</dt><dd>Computer vision · Monitoring</dd></div><div><dt>Engineering focus</dt><dd>Detection-to-dashboard integration and fresh operational state</dd></div><div><dt>Technology</dt><dd>Python · YOLOv8 · OpenCV · FastAPI · SQLite · Chart.js</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>A person detector produces observations, but monitoring a space needs more context: how many people are present, how occupancy changes, whether the camera is still connected, and what happened earlier. CrowdSense connects the inference output to an operational dashboard rather than leaving it in a detector window.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>YOLOv8 and OpenCV handle person detection, FastAPI exposes monitoring and analysis endpoints, and a JavaScript dashboard presents counts and trends with Chart.js. SQLite retains historical records, while video upload analysis and PDF reporting provide review paths beyond the live camera feed.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Read camera frames or video</li><li>Detect people</li><li>Calculate occupancy and risk</li><li>Publish current state and history</li><li>Inspect analytics and reports</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Connect inference to a usable monitoring surface</h3><p>The detector, API, and dashboard are separate parts of the workflow. Detection output becomes counts, occupancy indicators, alerts, and historical records that can be inspected outside the camera window.</p><p class="tradeoff"><strong>The tradeoff.</strong> Separating those components makes deployment more flexible, but requires consistent data contracts and clear failure states.</p></div><div class="decision"><h3>Treat freshness as part of the data</h3><p>The state layer writes a timestamped detector heartbeat and atomically replaces the state file. Missing, invalid, or stale state is returned as camera offline rather than continuing to present an old observation as current.</p><p class="tradeoff"><strong>The tradeoff.</strong> A freshness threshold can classify a slow or interrupted detector as offline, so it needs to match the actual update rate.</p></div><div class="decision"><h3>Keep live monitoring and uploaded-video review</h3><p>A camera detector supports live observations, while the upload analyzer provides a second path for examining recorded footage. History and report generation make previous observations available for review.</p><p class="tradeoff"><strong>The tradeoff.</strong> Video inference has material memory and compute requirements; hosting the dashboard alone does not provide the inference capacity.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The repository includes live person detection, crowd counting, risk classification, occupancy monitoring, a history-backed dashboard, video analysis, and PDF reporting. It demonstrates the path from computer-vision output to an inspectable monitoring application.</p><div class="case-scope"><h3>Current scope</h3><p>Detection quality depends on camera angle, lighting, occlusion, and the model. Risk labels are application indicators, not validated crowd-safety predictions. Live inference and deployment availability were not independently verified for this case study.</p></div><p class="case-next">A useful next evaluation would compare counts with labeled footage across different crowd densities and test how the dashboard handles delayed or interrupted detector updates.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/CrowdSense-AI/blob/main/README.md" target="_blank" rel="noopener noreferrer">Capabilities and resource requirements <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/CrowdSense-AI/blob/main/backend/state.py" target="_blank" rel="noopener noreferrer">Heartbeat, freshness, and atomic state updates <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="battery-fast-charging.html"><p class="eyebrow">Next case study</p><span class="serif">AI Battery Fast Charging ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trading Log — Desktop App — Case Study | Devendra Raj Singh</title>
+  <meta name="description" content="A Java Swing application bringing trade entry, record management, summary reporting, and CSV export into a local desktop workflow.">
+  <meta name="theme-color" content="#fcfaf8">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/gambarino.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip" href="#case-main">Skip to case study</a>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html#home" aria-label="Devendra Raj Singh home">Devendra</a>
+    <nav aria-label="Case study navigation"><a href="../index.html#projects">All projects ↗</a><a href="../output/pdf/Devendra_Raj_Singh_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a></nav>
+  </header>
+  <main class="case-main" id="case-main">
+    <article>
+      <header class="case-hero">
+        <div class="case-kicker eyebrow"><span>Trading Log — Desktop App / Case study</span><span>09 — 09</span></div>
+        <h1>A desktop home for a trading journal.</h1>
+        <p class="case-intro">A Java Swing application bringing trade entry, record management, summary reporting, and CSV export into a local desktop workflow.</p>
+        <div class="case-actions"><a class="text-link" href="#problem">Explore the story <img src="../images/icons/arrow-down.svg" alt="" width="18" height="18"></a><a class="text-link" href="https://github.com/devendrarajsingh07/Trading-Log-Management-System" target="_blank" rel="noopener noreferrer">View source <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></div>
+      </header>
+      
+      <dl class="case-facts"><div><dt>Project</dt><dd>Java desktop · Trading journal</dd></div><div><dt>Engineering focus</dt><dd>Swing interfaces, JDBC persistence, and reusable trade logic</dd></div><div><dt>Technology</dt><dd>Java · Swing · JDBC · SQL · CSV · Alpha Vantage</dd></div></dl>
+      <section class="case-section" id="problem" aria-labelledby="problem-title"><h2 id="problem-title">The problem</h2><div class="case-copy"><p>A journal needs to preserve more than an entry and exit price. Symbols, position side, quantity, date, strategy, and remarks help make a record understandable later. The desktop project brings those fields together with editing, summary statistics, and exports in a single application.</p></div></section>
+      <section class="case-section" aria-labelledby="approach-title"><h2 id="approach-title">The approach</h2><div class="case-copy"><p>Swing frames handle login, the dashboard, entry forms, and record views. A Trade model represents journal entries, while TradeDAO uses JDBC prepared statements to read and write database records. Separate services handle CSV export and external market-price requests.</p><ol class="case-pipeline" aria-label="Application workflow"><li>Open the login window</li><li>Enter a trade</li><li>Persist its journal fields</li><li>Review and edit records</li><li>Refresh summaries or export CSV</li></ol></div></section>
+      <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Key decisions</h2><div class="case-copy"><div class="decision"><h3>Separate windows from database access</h3><p>Dashboard and form classes handle the desktop interactions, while TradeDAO contains SQL operations. The Trade model carries journal fields between the interface and persistence layer.</p><p class="tradeoff"><strong>The tradeoff.</strong> The separation clarifies responsibilities, but database and network work still need careful scheduling to keep Swing's interface responsive.</p></div><div class="decision"><h3>Reuse records across summaries and exports</h3><p>The dashboard reads trade records for totals, winning/losing counts, and buy/sell summaries, and passes records to a CSV export utility. This keeps the stored journal central to several views.</p><p class="tradeoff"><strong>The tradeoff.</strong> Refreshing summaries from a record list is straightforward for a small journal, but larger datasets may need database-side aggregation and pagination.</p></div><div class="decision"><h3>Isolate external quote requests</h3><p>MarketPriceService contains symbol encoding, HTTP timeouts, response parsing, and provider-error handling. The quote integration is separate from the trade model and entry windows.</p><p class="tradeoff"><strong>The tradeoff.</strong> The committed service contains an API-key placeholder and requires configuration; external quote availability cannot be assumed.</p></div></div></section>
+      <section class="case-section" aria-labelledby="outcome-title"><h2 id="outcome-title">Where it stands</h2><div class="case-copy"><p>The source contains login, trade-entry and editing windows, database-backed records, dashboard summaries, CSV export, and a market-price adapter. It also provides the desktop foundation for the later web version of the journal.</p><div class="case-scope"><h3>Current scope</h3><p>The repository README is empty, so this case study is based on the Java implementation. The desktop application was not launched during this review. Login is present, but tenant isolation, production security, and live quote access are not established by this source review.</p></div><p class="case-next">A useful next iteration would add reproducible setup instructions, move configuration outside source files, and test database failures and UI responsiveness during quote requests.</p></div></section>
+      <section class="case-section" aria-labelledby="source-title"><h2 id="source-title">Explore the build</h2><div class="case-copy"><ul class="source-links"><li><a href="https://github.com/devendrarajsingh07/Trading-Log-Management-System/blob/main/src/com/tradinglog/app/ui/DashboardFrame.java" target="_blank" rel="noopener noreferrer">Dashboard actions, summaries, and export <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/Trading-Log-Management-System/blob/main/src/com/tradinglog/app/service/TradeDAO.java" target="_blank" rel="noopener noreferrer">Database-backed trade operations <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li><li><a href="https://github.com/devendrarajsingh07/Trading-Log-Management-System/blob/main/src/com/tradinglog/app/service/MarketPriceService.java" target="_blank" rel="noopener noreferrer">Market-price integration <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></li></ul><p class="source-note">Repository sources reviewed on 17 October 2026. The tradeoffs above reflect an analysis of the implementation and documentation.</p></div></section>
+    </article>
+    <nav class="case-next-project" aria-label="More case studies"><a href="mghsis.html"><p class="eyebrow">Next case study</p><span class="serif">MGHSIS ↗</span></a><a class="text-link" href="../index.html#projects">All projects <img src="../images/icons/arrow-up-right.svg" width="18" height="18" alt=""></a></nav>
+  </main>
+  <footer class="site-footer"><span>© 2026 Devendra Raj Singh</span><a href="mailto:devendrarajsingh2005@gmail.com">Let’s talk ↗</a></footer>
+</body>
+</html>

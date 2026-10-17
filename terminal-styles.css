@@ -1,0 +1,295 @@
+/* ==========================================================
+   TERMINAL CLI PLYGROUND STYLES (terminal-styles.css)
+   ========================================================== */
+
+/* Color Themes Definitions */
+.theme-dracula {
+  --bg: #282a36;
+  --fg: #f8f8f2;
+  --prompt: #50fa7b;
+  --accent: #ff79c6;
+  --blue: #8be9fd;
+  --yellow: #f1fa8c;
+  --border: #44475a;
+  --header-bg: #191a21;
+  --cmd-fg: #f1fa8c;
+}
+
+.theme-nord {
+  --bg: #2e3440;
+  --fg: #d8dee9;
+  --prompt: #a3be8c;
+  --accent: #b48ead;
+  --blue: #88c0d0;
+  --yellow: #ebcb8b;
+  --border: #4c566a;
+  --header-bg: #242933;
+  --cmd-fg: #ebcb8b;
+}
+
+.theme-solarized {
+  --bg: #002b36;
+  --fg: #839496;
+  --prompt: #859900;
+  --accent: #d33682;
+  --blue: #2aa198;
+  --yellow: #b58900;
+  --border: #073642;
+  --header-bg: #00212b;
+  --cmd-fg: #b58900;
+}
+
+.theme-default {
+  --bg: #050505;
+  --fg: #00ff00;
+  --prompt: #00ff00;
+  --accent: #ffffff;
+  --blue: #00ff00;
+  --yellow: #00ff00;
+  --border: #151515;
+  --header-bg: #111111;
+  --cmd-fg: #ffffff;
+}
+
+/* Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Mono', 'Fira Code', monospace;
+  background-color: #1a1a1a;
+  color: var(--fg);
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Terminal Window Frame */
+.terminal-window {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  border: 4px solid #000;
+  box-shadow: 10px 10px 0 #000;
+  overflow: hidden;
+}
+
+/* Window Title Bar */
+.window-bar {
+  background-color: var(--header-bg);
+  border-bottom: 4px solid #000;
+  padding: 0.6rem 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  user-select: none;
+}
+
+.window-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ctrl {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: inline-block;
+}
+
+.ctrl-close { background-color: #ff5f56; }
+.ctrl-close:hover { background-color: #e04f47; }
+.ctrl-min { background-color: #ffbd2e; }
+.ctrl-max { background-color: #27c93f; }
+
+.window-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--fg);
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.action-btn {
+  color: var(--fg);
+  opacity: 0.6;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 1;
+}
+
+/* Terminal Area & splits container */
+.terminal-container {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Panes alignment styles */
+.terminal-container.split-vertical {
+  flex-direction: column;
+}
+
+.terminal-container.split-horizontal {
+  flex-direction: row;
+}
+
+/* Terminal Pane Details */
+.terminal-pane {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  outline: none;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.terminal-pane:not(:last-child) {
+  border-right: 4px solid #000;
+}
+
+.split-vertical .terminal-pane:not(:last-child) {
+  border-right: none;
+  border-bottom: 4px solid #000;
+}
+
+.terminal-pane.active-pane {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Terminal Output Text */
+.terminal-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  flex-grow: 1;
+}
+
+.system-msg {
+  color: var(--blue);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* Input Fields */
+.input-line {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  flex-shrink: 0;
+}
+
+.prompt {
+  color: var(--prompt);
+  font-weight: 700;
+}
+
+.terminal-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 0.95rem;
+  caret-color: var(--prompt);
+}
+
+/* CLI Text styles */
+.text-cmd {
+  color: var(--cmd-fg);
+  font-weight: 700;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-success {
+  color: var(--prompt);
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+/* Snake Game Container style */
+.snake-game-wrapper {
+  margin: 1rem 0;
+  display: inline-block;
+  border: 3px solid var(--border);
+  background: #000;
+}
+
+.snake-game-wrapper canvas {
+  display: block;
+}
+
+/* Terminal hints footer */
+.terminal-hints {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 700;
+}
+
+.terminal-hints code {
+  background: #2b2b2b;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  color: var(--yellow);
+}
+
+.terminal-hints kbd {
+  background: #333;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid #555;
+  box-shadow: 0 1px 0 #000;
+}
+
+@media(max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+  .window-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .window-actions {
+    display: none;
+  }
+  .terminal-hints {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

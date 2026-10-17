@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drs-shell.exe | Interactive Terminal Resume</title>
+    <meta name="description" content="An interactive command-line interface resume playground for Devendra Raj Singh. Run commands, play arcade games, and inspect source files.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="terminal-styles.css">
+</head>
+<body class="theme-dracula">
+    <div class="terminal-window">
+        <!-- Window Bar -->
+        <div class="window-bar">
+            <div class="window-controls">
+                <a href="index.html" class="ctrl ctrl-close" title="Exit to Graphic GUI"></a>
+                <span class="ctrl ctrl-min"></span>
+                <span class="ctrl ctrl-max"></span>
+            </div>
+            <div class="window-title">drs@kiit-pc:~ - drs-shell.exe</div>
+            <div class="window-actions">
+                <span class="action-btn" onclick="splitPane('horizontal')" title="Split Horizontally"><i class="fas fa-columns"></i></span>
+                <span class="action-btn" onclick="splitPane('vertical')" title="Split Vertically"><i class="fas fa-grip-lines"></i></span>
+            </div>
+        </div>
+
+        <!-- Terminal Container -->
+        <div class="terminal-container" id="terminal-container">
+            <!-- Active Pane -->
+            <div class="terminal-pane active-pane" id="pane-1" onclick="focusInput(this)">
+                <div class="terminal-output" id="output-1">
+                    <div class="system-msg">
+========================================================================
+██████╗ ██████╗ ███████╗    ███████╗██╗  ██╗███████╗██╗     ██╗     
+██╔══██╗██╔══██╗██╔════╝    ██╔════╝██║  ██║██╔════╝██║     ██║     
+██║  ██║██████╔╝███████╗    ███████╗███████║█████╗  ██║     ██║     
+██║  ██║██╔══██╗╚════██║    ╚════██║██╔══██║██╔══╝  ██║     ██║     
+██████╔╝██║  ██║███████║    ███████║██║  ██║███████╗███████╗███████╗
+╚═════╝ ╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝
+========================================================================
+Welcome to drs-shell [Version 1.0.0-alpha]
+(c) 2026 Devendra Raj Singh. All rights reserved.
+
+Type 'help' to see the list of available commands.
+Type 'gui' to return to the graphic website.
+                    </div>
+                </div>
+                <div class="input-line">
+                    <span class="prompt">drs@kiit-pc:~$</span>
+                    <input type="text" class="terminal-input" id="input-1" autofocus autocomplete="off" spellcheck="false" onkeydown="handleInput(event, this)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions / Shortcuts -->
+    <div class="terminal-hints">
+        <p><i class="fas fa-info-circle"></i> Quick themes: <code>theme default</code>, <code>theme dracula</code>, <code>theme nord</code>, <code>theme solarized</code></p>
+        <p>Use <kbd>Up/Down</kbd> arrow keys for command history. Click pane to focus.</p>
+    </div>
+
+    <script src="terminal-script.js"></script>
+</body>
+</html>
