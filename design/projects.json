@@ -43,6 +43,23 @@
     ]
   },
   {
+    "repo": "AI-Powered-Subscription-Recurring-Payment-Manager",
+    "title": "SubTrack",
+    "category": "AI & Personal Finance",
+    "color": "cyan",
+    "description": "An AI-assisted subscription and recurring-payment manager for INR spending. Imports CSV, PDF, or image bank statements, detects subscriptions and fixed bills, tracks renewals and budgets, and answers questions with an assistant whose every figure is verified against the user's data.",
+    "tags": [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Gemini",
+      "Docker"
+    ],
+    "demo": "https://ai-powered-subscription-recurring-p.vercel.app",
+    "coverAlt": "SubTrack dashboard showing recurring spend, renewals, and category totals from synthetic demo data"
+  },
+  {
     "repo": "Human-Digital-Twin0.1",
     "title": "Human Digital Twin",
     "category": "AI & Digital Twins",

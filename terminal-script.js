@@ -112,33 +112,39 @@ Leadership & Operations : Team Coordination, Event Operations, Problem Solving, 
    Stack: React, FastAPI, PostgreSQL, pandas, D3
    Code: <a href="https://github.com/devendrarajsingh07/Traceable-impact-reporting-" target="_blank" rel="noopener noreferrer">Traceable-impact-reporting-</a>
 
-4. <span class="text-success">Human Digital Twin</span>
+4. <span class="text-success">SubTrack</span>
+   An AI-assisted subscription and recurring-payment manager for INR spending. Imports CSV, PDF, or image bank statements, detects subscriptions and fixed bills, tracks renewals and budgets, and answers questions with an assistant whose every figure is verified against the user's data.
+   Stack: React, TypeScript, FastAPI, PostgreSQL, Gemini, Docker
+   Code: <a href="https://github.com/devendrarajsingh07/AI-Powered-Subscription-Recurring-Payment-Manager" target="_blank" rel="noopener noreferrer">AI-Powered-Subscription-Recurring-Payment-Manager</a>
+   Demo: <a href="https://ai-powered-subscription-recurring-p.vercel.app" target="_blank" rel="noopener noreferrer">ai-powered-subscription-recurring-p.vercel.app</a>
+
+5. <span class="text-success">Human Digital Twin</span>
    A student wellness platform with an interactive 3D twin, daily observations, nine wellness dimensions, and personalized forecasts. Supports Random Forest models, what-if lifestyle simulations, and prediction-versus-actual tracking.
    Stack: Next.js, Three.js, FastAPI, scikit-learn, PostgreSQL
    Code: <a href="https://github.com/devendrarajsingh07/Human-Digital-Twin0.1" target="_blank" rel="noopener noreferrer">Human-Digital-Twin0.1</a>
 
-5. <span class="text-success">CrowdSense AI</span>
+6. <span class="text-success">CrowdSense AI</span>
    A crowd monitoring platform using YOLOv8 for person detection and crowd counting. Includes occupancy monitoring, risk classification, historical analytics, video upload analysis, and PDF reports.
    Stack: YOLOv8, OpenCV, FastAPI, SQLite, Chart.js
    Code: <a href="https://github.com/devendrarajsingh07/CrowdSense-AI" target="_blank" rel="noopener noreferrer">CrowdSense-AI</a>
 
-6. <span class="text-success">MGHSIS</span>
+7. <span class="text-success">MGHSIS</span>
    A mass-gathering safety prototype combining wearable telemetry, CCTV crowd analytics, and gate events in a venue digital twin. Provides zone-level risk prediction, scenario simulation, and human-authorized intervention workflows.
    Stack: Next.js, TypeScript, FastAPI, Redis, PostgreSQL, scikit-learn
    Code: <a href="https://github.com/devendrarajsingh07/SIH2026-MGHSIS." target="_blank" rel="noopener noreferrer">SIH2026-MGHSIS.</a>
 
-7. <span class="text-success">AI Battery Fast Charging</span>
+8. <span class="text-success">AI Battery Fast Charging</span>
    A Soft Actor-Critic reinforcement learning agent for adaptive lithium-ion battery charging. Uses a simplified Single Particle Model with temperature, voltage, and aging penalties, plus a Streamlit simulation dashboard.
    Stack: Python, SAC / RL, Gymnasium, PyTorch, Streamlit
    Code: <a href="https://github.com/devendrarajsingh07/AI_Battery_Fast_Charging" target="_blank" rel="noopener noreferrer">AI_Battery_Fast_Charging</a>
    Demo: https://devrajsingh07.streamlit.app
 
-8. <span class="text-success">Trading Log — Web App</span>
+9. <span class="text-success">Trading Log — Web App</span>
    A browser-based trading journal with JWT authentication, trade management, profit/loss analytics, search, filters, and CSV export. Integrates Alpha Vantage market prices and converts the original desktop workflow into a responsive web app.
    Stack: React, Node.js, Express, MySQL, Chart.js
    Code: <a href="https://github.com/devendrarajsingh07/Trading-Log-Management-System-using-JS" target="_blank" rel="noopener noreferrer">Trading-Log-Management-System-using-JS</a>
 
-9. <span class="text-success">Trading Log — Desktop App</span>
+10. <span class="text-success">Trading Log — Desktop App</span>
    A Java Swing desktop application for recording and analyzing trades. Provides login authentication, trade management, market price integration, profit/loss analysis, reporting, and CSV export.
    Stack: Java, Swing
    Code: <a href="https://github.com/devendrarajsingh07/Trading-Log-Management-System" target="_blank" rel="noopener noreferrer">Trading-Log-Management-System</a>

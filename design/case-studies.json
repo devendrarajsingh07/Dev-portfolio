@@ -103,6 +103,38 @@
     ]
   },
   {
+    "slug": "subtrack",
+    "title": "SubTrack",
+    "repo": "AI-Powered-Subscription-Recurring-Payment-Manager",
+    "ref": "master",
+    "headline": "Recurring spend you can verify to the rupee.",
+    "intro": "Turning raw INR bank statements into a clear picture of subscriptions, fixed bills, and renewals, with an assistant that cannot quote a number it cannot trace.",
+    "category": "Personal finance · AI-assisted full-stack",
+    "focus": "Recurrence detection, verified AI answers, and exact money handling",
+    "cover": "subtrack-cover.webp",
+    "coverAlt": "SubTrack dashboard showing recurring spend, renewals, and category totals from synthetic demo data",
+    "coverCaption": "The SubTrack dashboard running on synthetic demo data. Implementation and documentation are linked below.",
+    "reviewed": "22 October 2026",
+    "stack": ["React", "TypeScript", "Vite", "FastAPI", "PostgreSQL", "Gemini"],
+    "problem": "Subscriptions and fixed bills are scattered across months of bank transactions, with different merchant names, irregular dates, and quiet price increases. People rarely know their real monthly recurring spend or what renews next. Adding an AI assistant makes this easier to explore, but a language model that invents or miscalculates a rupee amount is worse than no assistant at all.",
+    "approach": "SubTrack keeps every number in deterministic code. Statements arrive as CSV, PDF, or images, are extracted locally, and must be reviewed by the user before import. A detector finds weekly, monthly, quarterly, and yearly cadences, and Decimal calculations drive the dashboard, renewals, budgets, and advisory savings. The assistant reads scoped data through read-only tools, and a server-side verifier blocks any figure it cannot trace back to those tool results.",
+    "flow": ["Import a statement", "Review extracted rows", "Detect recurring charges", "Calculate renewals and savings", "Ask a verified question"],
+    "decisions": [
+      {"title": "Let the model talk, never calculate", "body": "The assistant can call seven read-only tools inside a read-only transaction. Its answer is buffered and every amount, date, count, and percentage is checked against the tool results before anything reaches the browser; unverifiable answers fall back to a marked deterministic response.", "tradeoff": "The verifier proves where a figure came from, not that the surrounding prose is correct, and strict checking can reject some useful phrasing."},
+      {"title": "Treat money as exact and detection as evidence", "body": "Amounts stay Decimal in Python and decimal strings over the API. Recurrence requires a minimum number of charges, at least 70% of intervals within tolerance, and low amount variation, and each detection carries a confidence score. User confirmations and cancellations survive re-detection.", "tradeoff": "Conservative rules miss irregular or very new subscriptions until enough history exists."},
+      {"title": "Make live AI opt-in and bounded", "body": "An offline, deterministic policy is the default. Gemini is used only with per-user consent and is wrapped in a global kill switch, daily request and token caps, and a reservation before every provider call, all coordinated through PostgreSQL.", "tradeoff": "The offline assistant is less conversational, and the extra controls add operational configuration."}
+    ],
+    "outcome": "SubTrack reached a demo-complete 1.0.0 release with accounts, statement import, detection, renewals, recommendations, alerts, and the verified assistant. It is backed by 477 backend tests on real PostgreSQL, 73 frontend tests, and Playwright flows in Chromium, Firefox, and WebKit, and a free isolated demo is hosted on Vercel and Render.",
+    "scope": "1.0.0 means demo-complete, not production-ready. The hosted demo is synthetic-only with uploads disabled. Detection accuracy is measured on synthetic and handwritten fixtures, not real bank statements, and recommendations are advisory, not financial advice.",
+    "next": "Before a real-user beta, the remaining work is multi-instance, backup-restore, load, and security drills, plus a backed-up database, real email delivery, and approved legal documents.",
+    "sources": [
+      {"label": "Project overview, features, and status", "path": "README.md"},
+      {"label": "Detection, verifier, and architecture", "path": "docs/ARCHITECTURE.md"},
+      {"label": "Statement import formats and limits", "path": "docs/STATEMENT_IMPORT.md"},
+      {"label": "Definition of Done and known gaps", "path": "docs/DOD.md"}
+    ]
+  },
+  {
     "slug": "human-digital-twin", "title": "Human Digital Twin", "repo": "Human-Digital-Twin0.1",
     "headline": "A wellness twin that learns from observation.",
     "intro": "Connecting daily student observations, an interactive 3D twin, forecasts, and prediction feedback in one explainable loop.",

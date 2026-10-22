@@ -32,11 +32,11 @@ A personal portfolio for full-stack development, AI projects, and hands-on engin
 
 This portfolio presents the work of **Devendra Raj Singh**, a Computer Science student at **KIIT, Bhubaneswar**, focused on software and full-stack development.
 
-The experience pairs a light editorial layout with an interactive image cylinder, a visual project gallery, and **nine dedicated case studies**. Each story goes beyond a stack list to explain the problem, approach, technical decisions, tradeoffs, and current scope.
+The experience pairs a light editorial layout with an interactive image cylinder, a visual project gallery, and **ten dedicated case studies**. Each story goes beyond a stack list to explain the problem, approach, technical decisions, tradeoffs, and current scope.
 
 | Explore | What you will find |
 | --- | --- |
-| **9 project stories** | Full-stack applications, document intelligence, reporting systems, digital twins, computer vision, reinforcement learning, and desktop software. |
+| **10 project stories** | Full-stack applications, document intelligence, reporting systems, digital twins, computer vision, reinforcement learning, and desktop software. |
 | **36 skill badges** | Technology icons grouped by languages, frontend, backend, AI, databases, and tools. |
 | **Experience & education** | Internships, E-Labs training, KAEWS Operations Lead, and KIIT CSE, 2024–2028. |
 | **Resume & contact** | A one-page PDF with clickable profile links, plus a working EmailJS contact form. |
@@ -49,8 +49,8 @@ The experience pairs a light editorial layout with an interactive image cylinder
 | --- | --- |
 | **Open 3D image cylinder** | CSS perspective and two-sided image panels with automatic rotation, pointer drag, arrow-key control, and pause/resume. |
 | **Full-screen navigation** | A dark menu with keyboard focus handling, Escape to close, and an inert background. |
-| **Project gallery** | Six illustrated project covers, three additional project rows, and separate case-study and repository actions. |
-| **Case-study reader** | Shared editorial layouts, five story sections, three technical decisions per project, source links, and a nine-project navigation loop. |
+| **Project gallery** | Six featured project covers, four additional project rows, and separate case-study and repository actions. |
+| **Case-study reader** | Shared editorial layouts, five story sections, three technical decisions per project, source links, and a ten-project navigation loop. |
 | **Responsive layout** | A two-column desktop gallery, stacked mobile content, and a smaller interactive cylinder. |
 | **Motion preferences** | Automatic rotation pauses offscreen, when the page is hidden, and for reduced-motion preferences. |
 | **Developer playground** | A separate terminal-style resume experience. |
@@ -63,7 +63,7 @@ The experience pairs a light editorial layout with an interactive image cylinder
 
 <img src="docs/assets/case-study-preview.jpg" alt="Actual DocuMind case-study page showing its title, introduction, source action, and project artwork" width="100%" />
 
-The same structure is used across all nine projects, with project-specific content and a text-led opening where cover artwork is unavailable.
+The same structure is used across all ten projects, with project-specific content and a text-led opening where cover artwork is unavailable.
 
 </details>
 
@@ -77,6 +77,7 @@ The same structure is used across all nine projects, with project-specific conte
 | [**BillingPro**](https://github.com/devendrarajsingh07/billingpro-saas) | Company-scoped invoicing, payments, inventory, and procurement. | [HTML page](case-studies/billingpro.html) |
 | [**DocuMind**](https://github.com/devendrarajsingh07/Pdf-with-Ai-Rag) | Structured OCR, document retrieval, cited answers, and durable jobs. | [HTML page](case-studies/documind.html) |
 | [**Traceable Impact**](https://github.com/devendrarajsingh07/Traceable-impact-reporting-) | Source-linked metrics, review workflows, privacy, and report exports. | [HTML page](case-studies/traceable.html) |
+| [**SubTrack**](https://github.com/devendrarajsingh07/AI-Powered-Subscription-Recurring-Payment-Manager) | Statement import, recurrence detection, and an AI assistant with verified figures. ([live demo](https://ai-powered-subscription-recurring-p.vercel.app)) | [HTML page](case-studies/subtrack.html) |
 | [**Human Digital Twin**](https://github.com/devendrarajsingh07/Human-Digital-Twin0.1) | Student wellness, personalized forecasting, simulation, and feedback. | [HTML page](case-studies/human-digital-twin.html) |
 | [**CrowdSense AI**](https://github.com/devendrarajsingh07/CrowdSense-AI) | Person detection, occupancy monitoring, fresh state, and analytics. | [HTML page](case-studies/crowdsense.html) |
 | [**AI Battery Fast Charging**](https://github.com/devendrarajsingh07/AI_Battery_Fast_Charging) | Continuous reinforcement learning and modeled charging tradeoffs. | [HTML page](case-studies/battery-fast-charging.html) |
@@ -99,7 +100,7 @@ flowchart TB
         SKILLS --> BUILD
     end
 
-    BUILD --> PAGES[Static homepage and nine case-study pages]
+    BUILD --> PAGES[Static homepage and ten case-study pages]
 
     subgraph Browser[Visitor experience]
         PAGES --> UI[HTML and CSS layouts]
@@ -143,7 +144,7 @@ Open **http://127.0.0.1:4173/**. The preview serves the repository root on loopb
 node design/build-portfolio.cjs
 ```
 
-This rebuilds `index.html` and all nine case-study pages. Generated HTML is checked in, so rebuilding is only needed after changing its source content.
+This rebuilds `index.html` and all ten case-study pages. Generated HTML is checked in, so rebuilding is only needed after changing its source content.
 
 <a id="customize"></a>
 
@@ -204,7 +205,7 @@ Publish `case-studies/`, `images/`, `fonts/`, `vendor/`, and `output/pdf/` with 
 
 The current portfolio has been checked for:
 
-- All nine case-study pages, project actions, next-project navigation, and return links.
+- All ten case-study pages, project actions, next-project navigation, and return links.
 - Desktop and mobile layouts, with no horizontal overflow in the checked views.
 - Keyboard and pointer cylinder controls, pause/resume, and menu behavior.
 - Local image, stylesheet, font, resume, and page references.
@@ -229,7 +230,7 @@ Dev-portfolio/
 ├── index.html                  # Generated portfolio homepage
 ├── portfolio.css               # Editorial layout and responsive styles
 ├── portfolio.js                # Navigation, 3D ring, and contact form
-├── case-studies/                # Nine generated project stories
+├── case-studies/                # Ten generated project stories
 ├── case-study.css              # Shared case-study styling
 ├── design/                     # Content, generators, and design notes
 ├── docs/assets/                # Screenshots used in this README
@@ -244,7 +245,7 @@ Dev-portfolio/
 
 ## 🎨 Design & attribution
 
-The visual direction uses an ivory canvas, oversized **Gambarino** serif headings, **Switzer** interface text, open spacing, and restrained 3D motion. The README previews above are screenshots of the actual website. Project-cover images inside the site are **conceptual illustrations**, not application screenshots.
+The visual direction uses an ivory canvas, oversized **Gambarino** serif headings, **Switzer** interface text, open spacing, and restrained 3D motion. The README previews above are screenshots of the actual website. Project-cover images inside the site are **conceptual illustrations**, except SubTrack, whose cover is a real app screenshot with synthetic demo data.
 
 - [Current design notes](design/current-design.md)
 - [Font information](fonts/README.md)
